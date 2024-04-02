@@ -1,20 +1,6 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-$servername = "bom1plzcpnl503931.prod.bom1.secureserver.net";
-$username = "DataGateway";
-$password = "33zBrmCUqoJ7";
-$dbname = "Data_Gateway";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    $response['error'] = "Connection failed: " . $conn->connect_error;
-    echo json_encode($response);
-    exit();
-}
+include 'db-conn-v1.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["Prospect_Link"])) {
     $prospectLink = $conn->real_escape_string($_GET["Prospect_Link"]);
